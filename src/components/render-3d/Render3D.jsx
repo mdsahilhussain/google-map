@@ -37,7 +37,7 @@ const onSceneReady = (scene, texturePath) => {
   // Default intensity is 1. Let's dim the light a small amount
   light.intensity = 0.7;
 
-  //flipping texture on the backside of the mesh
+  // flipping texture on the backside of the mesh
   let faceUV = new Array(6);
   faceUV.fill(new Vector4(0, 0, 1, 1));
   faceUV[0] = new Vector4(0, 0, -1, -1);
@@ -68,17 +68,15 @@ const onRender = (scene) => {
 };
 const Render3D = ({ texturePath }) => {
   return (
-    <div>
-      <SceneComponent
-        antialias
-        onSceneReady={(scene) => {
-          onSceneReady(scene, texturePath);
-        }}
-        onRender={onRender}
-        id="my-canvas"
-        style={{ width: 900, height: 600 }}
-      />
-    </div>
+    <SceneComponent
+      antialias
+      onSceneReady={(scene) => {
+        onSceneReady(scene, texturePath);
+      }}
+      onRender={onRender}
+      id="my-canvas"
+      style={{ width: "100%", height: "100%" }}
+    />
   );
 };
 

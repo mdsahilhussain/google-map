@@ -1,0 +1,26 @@
+nav {
+  position: absolute;
+  top: 0.5em;
+  left: 1em;
+  right: 1em;
+  z-index: 99;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 3em;
+  width: auto;
+  padding: 0.5em 0;
+
+  background-color: var(--bgColor);
+  border-radius: 6px;
+  color: var(--textColor);
+  box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+    rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+nav > img {
+  width: auto;
+  height: 100%;
+}

@@ -1,13 +1,7 @@
 import mapboxgl from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-
+import "./map.css";
 import Render3D from "../render-3d/Render3D";
-
-const MapContainer = styled.div`
-  width: 50vw;
-  height: 50vh;
-`;
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -27,8 +21,8 @@ const Map = () => {
       map = new mapboxgl.Map({
         container: mapContainer.current, // container ID
         style: "mapbox://styles/mapbox/streets-v11", // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 9, // starting zoom
+        center: [78.6049, 24.3914], // starting position [lng, lat]
+        zoom: 3, // starting zoom
       });
 
       map.on("move", () => {
@@ -49,37 +43,31 @@ const Map = () => {
   }, [lat, lng, width, height, zoom]);
 
   return (
-    <div>
-      <MapContainer
+    <header className="map___container">
+      <div
         id="map"
+        onClick={() => {
+          setShowCube(false);
+        }}
         ref={mapContainer}
-        style={{ width: 500, height: 300 }}
-      ></MapContainer>
+        style={{ width: "100%", height: "100%" }}
+      ></div>
 
-      <div style={{ display: "grid", gridAutoFlow: "column" }}>
-        {/* <p>Image:</p> */}
-        {/* <MapImage imageUrl={imageUrl} /> */}
+      <button
+        className="map___container--button"
+        onClick={() => {
+          setShowCube(true);
+        }}
+      >
+        Render 3D
+      </button>
 
-        <div>
-          <button
-            onClick={() => {
-              setShowCube(true);
-            }}
-          >
-            Show 3D
-          </button>
-          <button
-            onClick={() => {
-              setShowCube(false);
-            }}
-          >
-            Hide 3D
-          </button>
-        </div>
-
-        {imageUrl && showCube && <Render3D texturePath={imageUrl} />}
-      </div>
-    </div>
+      <section className="map___container--3D">
+        {imageUrl && showCube && (
+          <Render3D texturePath={imageUrl} style={{ borderRadius: "25px" }} />
+        )}
+      </section>
+    </header>
   );
 };
 
